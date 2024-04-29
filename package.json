@@ -1,0 +1,17 @@
+{
+  "name": "carvalho_aleixo_inc--challenge-backend-",
+  "version": "1.0.0",
+  "description": "Coding challenge promoted by the  Carvalho Aleixo Inc company",
+  "main": "index.js",
+  "scripts": {
+    "src":"src/index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "express": "^4.19.2",
+    "jsdom": "^24.0.0"
+  }
+}
