@@ -1,9 +1,13 @@
 const express = require('express');
 const axios = require('axios');
 const { JSDOM } = require('jsdom');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
+
+// Adding cors middlewares to the application
+app.use(cors());
 
 // Route used to scrap the amazon service of it's results
 app.get(`/api/scrape/:keyword`, async (req, res) => {
