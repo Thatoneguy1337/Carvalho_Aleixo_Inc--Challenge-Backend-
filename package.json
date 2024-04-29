@@ -4,7 +4,7 @@
   "description": "Coding challenge promoted by the  Carvalho Aleixo Inc company",
   "main": "index.js",
   "scripts": {
-    "src":"src/index"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",

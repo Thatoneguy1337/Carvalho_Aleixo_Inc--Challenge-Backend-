@@ -5,17 +5,26 @@ const { JSDOM } = require('jsdom');
 const app = express();
 const port = 3000;
 
-app.get('/', async (req, res) => {
+app.get('/search/:keyword', async (req, res) => {
   try {
-    // Amazon Service requisition utilizing Axios
-    const response = await axios.get('https://example.com');
-    
+
+    // KeyWord used to search the determined products
+    const keyword = req.params.keyword;
+
+    // Verifying if the keyword was provided
+    if (!keyword) {
+        return res.status(400).send('Palavra-chave não especificada');
+      }
+
+
+    // Amazon Service requisition utilizing Axios and the keyword to use and search the products 
+    const response = await axios.get(`https://www.amazon.com.br/s?k=${encodeURIComponent(keyword)}&ref=nb_sb_noss`);
+
     // JSDOM used to manipulate HTML
     const dom = new JSDOM(response.data);
     const document = dom.window.document;
-    const pageTitle = document.querySelector('title').textContent;
 
-    res.send(`Title: ${pageTitle}`);
+    console.log(response)
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
@@ -23,5 +32,5 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is listening at http://localhost:${port}`);
+  console.log(`Server is listening at http://localhost:${port}/`);
 });
