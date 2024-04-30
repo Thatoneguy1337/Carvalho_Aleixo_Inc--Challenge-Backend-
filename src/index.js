@@ -1,16 +1,27 @@
-const express = require('express');
-const axios = require('axios');
-const { JSDOM } = require('jsdom');
-const cors = require('cors');
+// Importing the necessary dependencies 
+import "express-async-errors";
+import "reflect-metadata";
+import cors from "cors";
+import express from "express";
+import axios from "axios"
+import cors from "cors";
+import { JSDOM } from "jsdom";
 
+
+// Creating application tha will possibilitate our server to run 
 const app = express();
+
+// Defining which port our server will run  
 const port = 3000;
 
-// Adding cors middlewares to the application
+// Adding cors middlewares to the application to better treat possible errors
 app.use(cors());
 
-// Route used to scrap the amazon service of it's results
-app.get(`/api/scrape/:keyword`, async (req, res) => {
+// Transforming express application results into Json 
+app.use(express.json());
+
+// Route used to scrap the amazon service of it's results utilizing 
+app.get(`api/scrape/:keyword`, async (req, res) => {
   try {
     // Obtaining the keywordpass
     const keyword = req.params.keyword;
@@ -21,7 +32,7 @@ app.get(`/api/scrape/:keyword`, async (req, res) => {
     }
 
     // Utilizing The Amazon URL and passing the keyword as the parameter of the request_
-    const amazonUrl = `https://www.amazon.com.br/s?k=${keyword}&adgrpid=124701253337&gclid=Cj0KCQjwir2xBhC_ARIsAMTXk84F-LNY7HWVH_mPeZMVM2rV5AKj6b09gBTMGVe3lyRsM2TbOhygZaUaApqHEALw_wcB&hvadid=595919722967&hvdev=c&hvlocphy=1001655&hvnetw=g&hvqmt=e&hvrand=15958251163522805258&hvtargid=kwd-342241737280&hydadcr=12133_13330093&tag=hydrbrgk-20&ref=pd_sl_l0dbszrb9_e`;
+    const amazonUrl = `https://www.amazon.com.br/s?k=${keyword}`;
 
     // Fazendo requisição para o serviço da Amazon utilizando Axios
     const response = await axios.get(amazonUrl);
