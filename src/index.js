@@ -63,7 +63,7 @@ app.get(`/api/scrape/:keyword`, async (req, res) => {
     res.json(products);
   } catch (error) {
     console.error('Erro:', error);
-    res.status(500).json({ error: 'Erro interno do servidor' });
+    res.status(500).json({ error: 'Internal server error!' });
   }
 });
 
