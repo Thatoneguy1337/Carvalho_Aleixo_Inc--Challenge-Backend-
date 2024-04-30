@@ -43,24 +43,28 @@ app.get(`/api/scrape/:keyword`, async (req, res) => {
     // Array to store product details
     const products = [];
 
-    // Finding elements in the product pages
-    const productElements = document.querySelectorAll('.s-result-item');
 
     // Managing product elements and integrating the in a product array 
+    const productElements = document.querySelectorAll('[data-asin]');
+
     productElements.forEach(productElement => {
-      const titleElement = productElement.querySelector('h2 span');
+      const titleElement = productElement.querySelector('h2.a-size-mini a.a-link-normal');
       const title = titleElement ? titleElement.textContent.trim() : 'N/A';
 
-      const ratingElement = productElement.querySelector('.a-icon-star-small');
-      const rating = ratingElement ? parseFloat(ratingElement.getAttribute('aria-label').split(' ')[0]) : 0;
+      const ratingElement = productElement.querySelector('span.a-declarative i.a-icon-star-small');;
+      const ratingText = ratingElement ? ratingElement.textContent.trim() : 'N/A';
+      const rating = parseFloat(ratingText.replace(',', '.')); // Converting commas into dots to insure it's a valid number
 
-      const reviewsElement = productElement.querySelector('.a-size-small');
-      const reviews = reviewsElement ? parseInt(reviewsElement.textContent.replace(/[^\d]/g, '')) : 0;
+      const reviewsElement = productElement.querySelector('a.a-link-normal span.a-size-base');
+      const reviewsText = reviewsElement ? reviewsElement.textContent.trim() : 'N/A';
+      const reviewsMatch = reviewsText.match(/\d+/); // Use regex para extrair apenas os dígitos
+      const reviews = reviewsMatch ? parseInt(reviewsMatch[0]) : 'N/A';
+  
+  
 
-      const imageElement = productElement.querySelector('img');
+      const imageElement = productElement.querySelector('img.s-image');
       const imageUrl = imageElement ? imageElement.getAttribute('src') : 'N/A';
 
-      // Adding details to searched products inside the application 
       products.push({
         title,
         rating,
@@ -68,6 +72,7 @@ app.get(`/api/scrape/:keyword`, async (req, res) => {
         imageUrl
       });
     });
+
 
     // Returning Application errors in Json Format
     res.json(products);
