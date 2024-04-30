@@ -13,7 +13,7 @@ app.use(cors());
 app.get(`/api/scrape/:keyword`, async (req, res) => {
   try {
     // Obtaining the keywordpass
-    const keyword = req.query.keyword;
+    const keyword = req.params.keyword;
 
     // Verifying if the keyword was specified
     if (!keyword) {
