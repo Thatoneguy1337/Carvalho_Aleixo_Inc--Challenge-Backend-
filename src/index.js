@@ -1,11 +1,8 @@
 // Importing the necessary dependencies 
-import "express-async-errors";
-import "reflect-metadata";
-import cors from "cors";
-import express from "express";
-import axios from "axios"
-import cors from "cors";
-import { JSDOM } from "jsdom";
+const express = require('express');
+const axios = require('axios');
+const { JSDOM } = require('jsdom');
+const cors = require('cors');
 
 
 // Creating application tha will possibilitate our server to run 
@@ -21,10 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 // Route used to scrap the amazon service of it's results utilizing 
-app.get(`api/scrape/:keyword`, async (req, res) => {
+app.get(`/api/scrape/:keyword`, async (req, res) => {
   try {
     // Obtaining the keywordpass
-    const keyword = req.params.keyword;
+    let keyword = req.params.keyword;
 
     // Verifying if the keyword was specified
     if (!keyword) {
@@ -32,11 +29,13 @@ app.get(`api/scrape/:keyword`, async (req, res) => {
     }
 
     // Utilizing The Amazon URL and passing the keyword as the parameter of the request_
-    const amazonUrl = `https://www.amazon.com.br/s?k=${keyword}`;
+    const amazonUrl = `https://www.amazon.com.br/s?k=${encodeURIComponent(keyword)}`;
 
     // Fazendo requisição para o serviço da Amazon utilizando Axios
     const response = await axios.get(amazonUrl);
     
+    console.log(response);
+
     // Utilizg JSDOM to manipulate HTML elements
     const dom = new JSDOM(response.data);
     const document = dom.window.document;
