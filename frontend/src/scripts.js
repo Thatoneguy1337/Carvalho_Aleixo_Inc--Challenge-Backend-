@@ -1,93 +1,72 @@
 import { requestKeyWord } from "./request.js";
- 
 
-let data = [];
-
-
-const searchKeyword = () => {
-    
+const searchKeyword = async () => {
     const inputSearch = document.querySelector(".search-bar");
     const btnSearch = document.querySelector(".search-button");
 
-    btnSearch.addEventListener("click", async (event)=>{
-
+    btnSearch.addEventListener("click", async (event) => {
         event.preventDefault();
+        
+        const keyword = inputSearch.value;
+        const data = await requestKeyWord(keyword);
 
-
-        data = await requestKeyWord(inputSearch.value);
-    
-        btnSearch.classList.toggle("btnClicked");
-
-        console.log(data)
-
-        return data;
-
-})
-
+        renderCards(data);
+    });
 };
 
-const dataSearch = await requestKeyWord();
+const renderCards = (data) => {
+    const containerCards = document.querySelector(".render-list");
+    containerCards.innerHTML = ""; // Cleans up previously searched product
+
+    if (data.length === 0) {
+        console.log("No results were found for your search.");
+        return;
+    }
+
+    data.forEach((element) => {
+        const card = createCard(element);
+        containerCards.appendChild(card);
+    });
+};
+
+const createCard = ({ title, rating, reviews, imageUrl }) => {
+    const card = document.createElement("li");
+    card.classList.add("card");
+
+    const divImage = document.createElement("div");
+    divImage.classList.add("divImage");
+    const cardImg = document.createElement("img");
+    cardImg.classList.add("productImg");
+    cardImg.src = imageUrl;
+    divImage.appendChild(cardImg);
+
+    const divTitle = document.createElement("div");
+    divTitle.classList.add("divTitle");
+    const cardTitle = document.createElement("h2");
+    cardTitle.classList.add("cardTitle");
+    cardTitle.innerText = title;
+    divTitle.appendChild(cardTitle);
+
+    const divRating = document.createElement("div");
+    divRating.classList.add("divRating");
+    const cardStar = document.createElement("img");
+    cardStar.classList.add("cardStar");
+    cardStar.src = "./src/assets/img/star-7207.svg";
+    const cardRating = document.createElement("span");
+    cardRating.classList.add("cardRating");
+    cardRating.innerText = rating;
+    divRating.appendChild(cardStar);
+    divRating.appendChild(cardRating);
+
+    const divReviews = document.createElement("div");
+    divReviews.classList.add("divReviews");
+    const cardReview = document.createElement("p");
+    cardReview.innerText = reviews;
+    divReviews.appendChild(cardReview);
+
+    card.append(divImage, divTitle, divRating, divReviews);
+    return card;
+};
 
 searchKeyword();
-
-if(dataSearch){
-const cards = (data) => {
-
-    const containerCards = document.querySelector(".render-list"); 
-               
-    data.forEach(element => {
-       const cards = renderCards(element);
-       containerCards.appendChild(cards)
-
-    });
-   }
-   
-   const renderCards = ({title,rating,reviews,imageUrl}) => {
-
-       
-       const card = document.createElement("li");
-       const divImage = document.createElement("div");
-       const divTitle = document.createElement("div");
-       const divRating = document.createElement("div");
-       const divReviews = document.createElement("div");
-       const cardTitle = document.createElement("h2");
-       const cardStar = document.createElement("img");
-       const cardRating = document.createElement("span");
-       const cardReview = document.createElement("p");    
-       const cardImg = document.createElement("img");
-
-       card.classList.add("card");
-       divTitle.classList.add("divTitle");
-       divRating.classList.add("divRating");
-       divReviews.classList.add("divReviews");
-       cardTitle.classList.add("cardTitle");
-       cardStar.classList.add("cardStar");
-       cardRating.classList.add("cardRating");
-       cardImg.classList.add("productImg");
-       divImage.classList.add("divImage");
-    
-       cardImg.src = imageUrl;
-       cardTitle.innerText = title;
-       cardReview.innerText = reviews;
-       cardRating.innerText = rating;
-       cardStar.src = "./src/assets/img/star.svg"; 
-       
-       divImage.appendChild(cardImg);
-       divTitle.appendChild(cardTitle);
-       divRating.appendChild(cardRating);  
-       divReviews.appendChild(cardReview);
-       
-       card.append(divImage, divTitle, divRating, divReviews);
-
-       return card
-
-   }
-   cards(dataSearch);
-}
-else{
-
-  console.log("error");
-
-
-}
 
