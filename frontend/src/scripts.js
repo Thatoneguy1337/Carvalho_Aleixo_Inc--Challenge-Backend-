@@ -61,7 +61,7 @@ const createCard = ({ title, rating, reviews, imageUrl }) => {
     const divReviews = document.createElement("div");
     divReviews.classList.add("divReviews");
     const cardReview = document.createElement("p");
-    cardReview.innerText = reviews;
+    cardReview.innerText = `Reviews:${reviews}`;
     divReviews.appendChild(cardReview);
 
     card.append(divImage, divTitle, divRating, divReviews);
