@@ -10,7 +10,10 @@ const searchKeyword = async () => {
         const keyword = inputSearch.value;
         const data = await requestKeyWord(keyword);
 
+        
         renderCards(data);
+       
+
     });
 };
 
@@ -30,6 +33,13 @@ const renderCards = (data) => {
 };
 
 const createCard = ({ title, rating, reviews, imageUrl }) => {
+    
+    const nullableCard = document.createElement("li"); 
+
+    if (title === "N/A" || rating === "N/A" || reviews === "N/A" || imageUrl === "N/A") {
+        return nullableCard; // Return null to indicate the object should not be rendered
+    }
+    
     const card = document.createElement("li");
     card.classList.add("card");
 
@@ -60,8 +70,8 @@ const createCard = ({ title, rating, reviews, imageUrl }) => {
 
     const divReviews = document.createElement("div");
     divReviews.classList.add("divReviews");
-    const cardReview = document.createElement("p");
-    cardReview.innerText = `Reviews:${reviews}`;
+    const cardReview = document.createElement("strong");
+    cardReview.innerText = `Reviews:  ${reviews}`;
     divReviews.appendChild(cardReview);
 
     card.append(divImage, divTitle, divRating, divReviews);

@@ -80,7 +80,7 @@ app.get(`/api/scrape/:keyword`, async (req, res) => {
     res.json(products);
   } catch (error) {
     console.error('Error:', error);
-    res.status(503).json({ error: '503 error on the Amazon Url! Reload and try again!' }); // Returning Application errors in Json Format
+    res.status(503).json({ error: '503 error on the Amazon Url! Reload and try again!' }); // Returning Application errors in Json Format 
   }
 });
 

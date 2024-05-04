@@ -74,8 +74,8 @@ height:5%;
 
 .render-list {
     padding: 10px;
-    width: 100%;
-    height: 200px;
+    width: 320px;
+    height: 100%;
     display:flex;    
     gap: 6px;
     overflow-x: auto;
@@ -83,22 +83,22 @@ height:5%;
 
 .card{
     width: 120px;
-    height: 60px;
+    height: 120px;
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    gap: 10px;
     box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.25);
 }
 
 .render-container{
 margin-top: 40px;    
 display: flex;
-height: 400px;
+height: 500px;
 }
 
 .productImg{
-    width: 120px;
-    height: 60px;
+    width: 200px;
+    height: 90px;
 }
 
 .search-forms {
@@ -117,6 +117,7 @@ display: flex;
  border: none;
  border-radius: 2px;
  background-color: rgba(255, 255, 0, 0.893);
+ cursor: pointer;
 }
 
 .search-div{ 
@@ -141,14 +142,25 @@ display: flex;
 
 }
 
+.divRating{
+  display:flex;
+  gap: 5px;
+  align-items: center;
+}
+
+
+
 
 @media (min-width: 768px) {
     
 
     .render-list{
-        display: flex;
-        flex-direction: row;
-
+        justify-content: space-around;
+        width: 100%;
+        height: 2080px;
+        display:flex;    
+        flex-flow: wrap;
+        gap: 6px;
     }
 
     .search-div{
@@ -158,6 +170,14 @@ display: flex;
         background-color: #F5F5F5;
      }
     
+     .card{
+        width: 200px;
+        height: 200px;
+        display:flex;
+        flex-direction: column;
+        gap: 10px;
+        box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.25);
+    }
 
     
 
