@@ -13,8 +13,22 @@ const requestKeyWord =  async (keyword) => {
       
     return data;
   }
+
+const baseRequest =  async () => {
   
+    const data = await fetch(`http://localhost:3000/api/scrape/All`, {
+      method: "GET",
+  
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((res) => res)
+      .catch(err => console.log(err))
+    
+      
+    return data;
+  } 
 
   
-  export { requestKeyWord };
+  export { requestKeyWord, baseRequest };
   

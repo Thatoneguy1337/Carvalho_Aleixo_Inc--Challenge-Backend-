@@ -1,4 +1,11 @@
-import { requestKeyWord } from "./request.js";
+import { requestKeyWord, baseRequest} from "./request.js";
+
+
+const searchAllProducts = async () => {
+    const allProductsData = await requestKeyWord("All departments"); // Passa uma string vazia para obter todos os produtos
+    renderCards(allProductsData);
+};
+
 
 const searchKeyword = async () => {
     const inputSearch = document.querySelector(".search-bar");
@@ -8,11 +15,15 @@ const searchKeyword = async () => {
         event.preventDefault();
         
         const keyword = inputSearch.value;
-        const data = await requestKeyWord(keyword);
+        const noSearch = await baseRequest;
+        const dataSearch = await requestKeyWord(keyword);
 
-        
-        renderCards(data);
-       
+        if(!dataSearch){
+         renderCards(dataSearch);
+        }
+        else{
+           renderCards(noSearch); 
+        }
 
     });
 };
@@ -21,7 +32,7 @@ const renderCards = (data) => {
     const containerCards = document.querySelector(".render-list");
     containerCards.innerHTML = ""; // Cleans up previously searched product
 
-    if (data.length === 0) {
+    if (!data || data.length === 0) {
         console.log("No results were found for your search.");
         return;
     }
@@ -33,10 +44,11 @@ const renderCards = (data) => {
 };
 
 const createCard = ({ title, rating, reviews, imageUrl }) => {
-    
-    const nullableCard = document.createElement("li"); 
-
+     
     if (title === "N/A" || rating === "N/A" || reviews === "N/A" || imageUrl === "N/A") {
+        const nullableCard = document.createElement("h2"); 
+
+
         return nullableCard; // Return null to indicate the object should not be rendered
     }
     
@@ -46,7 +58,7 @@ const createCard = ({ title, rating, reviews, imageUrl }) => {
     const divImage = document.createElement("div");
     divImage.classList.add("divImage");
     const cardImg = document.createElement("img");
-    cardImg.classList.add("productImg");
+    cardImg.classList.add("cardImg");
     cardImg.src = imageUrl;
     divImage.appendChild(cardImg);
 
@@ -79,4 +91,4 @@ const createCard = ({ title, rating, reviews, imageUrl }) => {
 };
 
 searchKeyword();
-
+searchAllProducts();
