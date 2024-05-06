@@ -170,7 +170,6 @@ display: flex;
         width: calc(25% - 20px); /* Calcula o tamanho para que 4 cards caibam em uma linha, com espaço entre eles */
         height: auto; /* Deixa a altura automática para que o conteúdo dentro do card determine a altura */
         margin-bottom: 20px;
-
     }
 
     .cardTitle{
