@@ -67,28 +67,24 @@ height:5%;
     width: 100%;
     height: 100%;
     display:flex;    
-    gap: 30px;
+    justify-content: space-around;
+    gap: 20px;
     overflow-x: auto;
     
 }
 
 .card{
-    width: 120px;
-    height: 120px;
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
+    width: 200px;
+    height: 120px; /* Deixa a altura automática para que o conteúdo dentro do card determine a altura */
+    margin-bottom: 20px; /* Adiciona margem na parte inferior para separar os cards */
     box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.25);
+    gap:20px;
 }
+
 
 .cardImg{
-    width: 100%;
-}
-
-
-.cardimg{
    width: 100%;
-   height: 60px; 
+   height: auto; 
 
 
 }
@@ -138,6 +134,7 @@ display: flex;
 
 .cardTitle{
     font-size: x-small;
+    font-weight: bold;
 
 }
 
@@ -154,12 +151,11 @@ display: flex;
     
 
     .render-list{
-        justify-content: space-around;
         width: 100%;
-        height: 2080px;
+        height: 3080px;
         display:flex;    
         flex-flow: wrap;
-        gap: 6px;
+        justify-content: space-between;
     }
 
     .search-div{
@@ -171,13 +167,18 @@ display: flex;
     
     
    .card{
-        width: 200px;
-        height: 180px;
-        display:flex;
-        flex-direction: column;
-        gap: 10px;
-        box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.25);
+        width: calc(25% - 20px); /* Calcula o tamanho para que 4 cards caibam em uma linha, com espaço entre eles */
+        height: auto; /* Deixa a altura automática para que o conteúdo dentro do card determine a altura */
+        margin-bottom: 20px;
+
     }
+
+    .cardTitle{
+        font-size: large;
+        font-weight: bold;
+    
+    }
+
 
     .logo-img {
         width:10%;
