@@ -18,10 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 // Route used to scrap the amazon service of it's results utilizing 
-app.get(`/api/scrape/:keyword`, async (req, res) => {
+app.get(`/api/scrape/:keyword?`, async (req, res) => {
   try {
     // Obtaining the keywordpass
-    let keyword = req.params.keyword;
+    let keyword = req.params.keyword || '';
 
     // Verifying if the keyword was specified
     if (!keyword) {
@@ -58,8 +58,8 @@ app.get(`/api/scrape/:keyword`, async (req, res) => {
 
       const reviewsElement = productElement.querySelector('a.a-link-normal span.a-size-base'); // Selecting the HTML element so we can capture it and store it in our product array
       const reviewsText = reviewsElement ? reviewsElement.textContent.trim() : 'N/A'; // Utilizing trim to remove the blank spaces contained in the text(if it exists) using ternary operators
-      const reviewsMatch = reviewsText.match(/\d+/); // Using regex to extract only the digits
-      const reviews = reviewsMatch ? parseInt(reviewsMatch[0]) : 'N/A';  // Utilizing parseInt to parse Json response(If it exists) using ternary operators
+      const reviewsMatch = reviewsText.match(/\d+/g); // 'g' significa correspondência global para encontrar todas as ocorrências
+      const reviews = reviewsMatch ? parseInt(reviewsMatch.join('')) : 'N/A'; // Concatena todos os dígitos e os converte em um número inteiro
 
   
   
