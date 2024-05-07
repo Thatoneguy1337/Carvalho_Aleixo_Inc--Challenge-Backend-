@@ -18,7 +18,7 @@ const searchKeyword = async () => {
         const noSearch = await baseRequest;
         const dataSearch = await requestKeyWord(keyword);
 
-        if(!dataSearch){
+        if(dataSearch){
          renderCards(dataSearch);
         }
         else{
@@ -32,10 +32,6 @@ const renderCards = (data) => {
     const containerCards = document.querySelector(".render-list");
     containerCards.innerHTML = ""; // Cleans up previously searched product
 
-    if (!data || data.length === 0) {
-        console.log("No results were found for your search.");
-        return;
-    }
 
     data.forEach((element) => {
         const card = createCard(element);
