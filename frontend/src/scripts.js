@@ -50,7 +50,6 @@ const createCard = ({ title, rating, reviews, imageUrl }) => {
     
     const card = document.createElement("li");
     card.classList.add("card");
-
     const divImage = document.createElement("div");
     divImage.classList.add("divImage");
     const cardImg = document.createElement("img");
@@ -65,6 +64,8 @@ const createCard = ({ title, rating, reviews, imageUrl }) => {
     cardTitle.innerText = title;
     divTitle.appendChild(cardTitle);
 
+    const divStarRating = document.createElement("div");
+    divStarRating.classList.add("divStarRating");
     const divRating = document.createElement("div");
     divRating.classList.add("divRating");
     const cardStar = document.createElement("img");
@@ -73,16 +74,16 @@ const createCard = ({ title, rating, reviews, imageUrl }) => {
     const cardRating = document.createElement("span");
     cardRating.classList.add("cardRating");
     cardRating.innerText = rating;
-    divRating.appendChild(cardStar);
-    divRating.appendChild(cardRating);
+    divStarRating.append(cardStar, cardRating);
+    
 
-    const divReviews = document.createElement("div");
-    divReviews.classList.add("divReviews");
+  
     const cardReview = document.createElement("strong");
-    cardReview.innerText = `Reviews:  ${reviews}`;
-    divReviews.appendChild(cardReview);
+    cardReview.innerText = `${reviews}`;
+    cardReview.classList.add("reviewNumbers")
+    divRating.append(divStarRating, cardReview);
 
-    card.append(divImage, divTitle, divRating, divReviews);
+    card.append(divImage, divTitle, divRating);
     return card;
 };
 
