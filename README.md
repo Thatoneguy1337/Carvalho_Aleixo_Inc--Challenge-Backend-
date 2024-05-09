@@ -43,8 +43,7 @@ Click on the live server icon, and enter the localhost link in the terminal:
 Use the following route:
 http://localhost:5500/index.html
 
-
-made by: Victor Guterres Borges
+# made by: Victor Guterres Borges
 
 
 
