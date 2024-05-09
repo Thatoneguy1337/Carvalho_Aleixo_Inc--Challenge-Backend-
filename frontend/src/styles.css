@@ -1,7 +1,7 @@
 
 :root{ 
     font-family: 'Roboto', sans-serif;
-    
+    overflow: hidden;
     }
    
    html, body, div, span, applet, object, iframe,
@@ -160,11 +160,11 @@ font-size: x-small;
 
     .render-list{
         width: 100%;
-        height: 3080px;
+        height: auto;
         display:flex;    
         flex-flow: wrap;
         justify-content: space-between;
-        overflow: hidden;
+
     }
 
     .search-div{
