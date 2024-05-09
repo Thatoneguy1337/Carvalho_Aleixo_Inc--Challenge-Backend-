@@ -25,11 +25,20 @@ cd backend
 npm install
 ```
 
-# Running Code(FrontEnd) 
+# Running Code(Backend) 
 
 ```bash
 npm run start
 ```
+
+# Running Code(Frontend)
+
+To run the code in the FrontEnd paste, you'll need the live server extension for the vscode:
+
+Liveserver:https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+
+
+<img src="https://github.com/ritwickdey/vscode-live-server/raw/HEAD/images/Screenshot/vscode-live-server-statusbar-3.jpg"></img>
 
 
 
