@@ -37,13 +37,14 @@ To run the code in the FrontEnd paste, you'll need the live server extension for
 
 Liveserver:https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 
-
+Click on the live server icon, and enter the localhost link in the terminal: 
 <img src="https://github.com/ritwickdey/vscode-live-server/raw/HEAD/images/Screenshot/vscode-live-server-statusbar-3.jpg"></img>
 
+Use the following route:
+http://localhost:5500/index.html
 
 
-
-
+made by: Victor Guterres Borges
 
 
 
