@@ -1,3 +1,4 @@
+
 :root{ 
     font-family: 'Roboto', sans-serif;
     
@@ -74,9 +75,10 @@ height:5%;
 }
 
 .card{
+    padding: 10px;
     width: 200px;
-    height: 120px; /* Deixa a altura automática para que o conteúdo dentro do card determine a altura */
-    margin-bottom: 20px; /* Adiciona margem na parte inferior para separar os cards */
+    height: 120px; 
+    margin-bottom: 20px; 
     box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.25);
     gap:20px;
 }
@@ -135,11 +137,16 @@ display: flex;
     font-weight: bold;
 
 }
+.divStarRating{
+    display:flex;
+    align-items: center;
 
+}
 .divRating{
   display:flex;  
   gap: 30px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .reviewNumbers{
@@ -157,6 +164,7 @@ font-size: x-small;
         display:flex;    
         flex-flow: wrap;
         justify-content: space-between;
+        overflow: hidden;
     }
 
     .search-div{
@@ -168,8 +176,8 @@ font-size: x-small;
     
     
    .card{
-        width: calc(25% - 20px); /* Calcula o tamanho para que 4 cards caibam em uma linha, com espaço entre eles */
-        height: auto; /* Deixa a altura automática para que o conteúdo dentro do card determine a altura */
+        width: calc(25% - 20px); 
+        height: auto;   
         margin-bottom: 20px;
     }
 
@@ -187,11 +195,18 @@ font-size: x-small;
         
     
     .divRating{
-            display:flex;
-            flex-direction: row;  
-            gap: 5px;
-            align-items: center;
-          }
+      display:flex;
+      flex-direction: row;  
+      gap: 5px;
+      align-items: center;
+    }
+
+    .reviewNumbers{
+    color: rgb(0, 38, 255);
+    font-size: large;
+    }
+
+
 
 }
 
