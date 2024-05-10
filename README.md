@@ -26,7 +26,7 @@ This is a full-stack web scraping project that allows users to search for produc
 
 # Setup Instructions
 Clone the repository to your local machine:
-bash```
+```bash
 git clone <repository-url>
 ```
 
